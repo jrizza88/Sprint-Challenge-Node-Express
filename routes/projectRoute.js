@@ -65,7 +65,19 @@ router.put('/:id', async (req, res) => {
         } catch {
             res.status(500).json({error: "issue with editing project, try again!"})
         }
-})
+});
+
+router.delete('/:id', async (req, res) => {
+    const {id} = req.params;
+
+    try {
+        const deleteProject = await Project.remove(id)
+        res.status(404).json({message: 'User must have been deleted or never existed!'})
+
+    } catch {
+        res.status(500).json({error: 'Server issue prevented delete of user'})
+    }
+});
 
 module.exports = router;
 
