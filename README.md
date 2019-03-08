@@ -26,13 +26,25 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+ I learned that express is a lightweight and flexible framework that works with Node.js. Express is used for the backend. Express allows developers to work with all types of Middleware(thirdparty, customer, error). I also learned about route handlers that tells the server to go to a specific endpoint. 
+
+
 - [ ] Describe Middleware?
+
+Middleware is a function within Express that allows you to run a set of code to meant to extend the benefits of Express. It can be third-party, customer or error based. It helps to make code more modular. Middleware can be sent to the request object to engage with changes before moving on to the next middleware. 
 
 - [ ] Describe a Resource?
 
+Resources are things that clients can access. RESTful standards are the go to standard. Everything used in APIs are considered resources. 
+
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+An API can return status updates, such as 200, 201, 404 and 500 so that someone can know if a request was sucessful, a server error or if the client/user did something to cause the error. 
+
 - [ ] How can we partition our application into sub-applications?
+
+    We can use a router to accomplish this. 
 
 ## Project Setup
 
