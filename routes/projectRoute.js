@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
     }
 
     try {
-        const newProject = req.body;
+        const newProject = await Project.insert(req.body);
         console.log(newProject)
         if (newProject){
             res.status(201).json(newProject)
