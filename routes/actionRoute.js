@@ -5,7 +5,7 @@ const router = express.Router();
 const Action = require('../data/helpers/actionModel');
 
 const descriptionLimit = (req, res, next) => {
-    const stringLimit = req.body.description;
+    const stringLimit = req.body.description.length;
     const count = 128;
     if (stringLimit > count) {
         return res.status(404).json({message: 'string limit is 128 characters, trim down please'})
@@ -41,9 +41,9 @@ router.get('/:id', async (req, res) => {
 
 
 router.post('/', descriptionLimit, async (req, res) => {
-    const {description, project_id} = req.body;
-    if (!description || !project_id) {
-    res.status(404).json({error: "Must enter a description and project id!"})
+    const {description, project_id, notes} = req.body;
+    if (!description || !project_id || !notes) {
+    res.status(404).json({error: "Must enter a description, note, and project id!"})
     }
 
     try {
