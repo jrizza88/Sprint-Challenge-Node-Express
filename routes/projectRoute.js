@@ -33,7 +33,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     const {name, description} = req.body;
     if (!name || !description) {
-    res.status(404).json({error: "Must enter a new and description!"})
+    res.status(404).json({error: "Must enter a name and description!"})
     }
 
     try {
@@ -47,6 +47,25 @@ router.post('/', async (req, res) => {
         res.status(500).json({error: "issue with inserting a new project, try again!"})
     }
 });
+
+router.put('/:id', async (req, res) => {
+    const {name, description} = req.body;
+    if (!name || !description) {
+        res.status(404).json({error: "Must enter in text to edit for name and description!"})
+        }
+
+        try {
+            const project = req.body;
+            const editProject = await Project.update(req.params.id, project);
+            console.log(editProject)
+            if (editProject){
+                res.status(201).json(editProject)
+                console.log("Edited:", editProject)
+            } 
+        } catch {
+            res.status(500).json({error: "issue with editing project, try again!"})
+        }
+})
 
 module.exports = router;
 
