@@ -14,8 +14,8 @@ server.use(parser, logMiddleware, securityMiddleware);
 
 
 // import routes from users and posts
-server.use('/api/project', projectRoute);
-server.use('/api/action', actionRoute);
+server.use('/api/projects', projectRoute);
+server.use('/api/actions', actionRoute);
 
 server.get('/', (req, res) => {
     res.send(`<h2>Welcome to the sprint challenge!</h2>`)
