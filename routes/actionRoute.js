@@ -31,11 +31,11 @@ router.get('/:id', async (req, res) => {
         if (oneAction) {
             res.status(200).json(oneAction)
         } else {
-            res.status(404).send(`<h3>Resource does not exist, try a different id</h3>`)
+            res.status(404).send(`<h3>action does not exist, try a different id</h3>`)
         }
        
     } catch {
-        res.status(500).json({error: "Could not render projects"})
+        res.status(500).json({error: "Could not render the action"})
     }
 });
 
@@ -59,21 +59,21 @@ router.post('/', descriptionLimit, async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-    const {name, description} = req.body;
-    if (!name || !description) {
-        res.status(404).json({error: "Must enter in text to edit for name and description!"})
+    const {description, project_id, notes} = req.body;
+    if (!description || !project_id || !notes) {
+        res.status(404).json({error: "Must enter a description, note, and project id in order to edit"})
         }
 
         try {
-            const project = req.body;
-            const editProject = await Action.update(req.params.id, project);
-            console.log(editProject)
-            if (editProject){
-                res.status(201).json(editProject)
-                console.log("Edited:", editProject)
+            const action = req.body;
+            const editAction = await Action.update(req.params.id, action);
+            console.log(editAction)
+            if (editAction){
+                res.status(201).json(editAction)
+                console.log("Edited:", editAction)
             } 
         } catch {
-            res.status(500).json({error: "issue with editing project, try again!"})
+            res.status(500).json({error: "issue with editing the action, try again!"})
         }
 });
 
@@ -81,8 +81,8 @@ router.delete('/:id', async (req, res) => {
     const {id} = req.params;
 
     try {
-        const deleteProject = await Action.remove(id)
-        res.status(404).json({message: 'User must have been deleted or never existed!'})
+        const deleteAction = await Action.remove(id)
+        res.status(404).json({message: 'Action must have been deleted or never existed!'})
 
     } catch {
         res.status(500).json({error: 'Server issue prevented delete of user'})

@@ -87,7 +87,7 @@ router.delete('/:id', async (req, res) => {
 
     try {
         const deleteProject = await Project.remove(id)
-        res.status(404).json({message: 'User must have been deleted or never existed!'})
+        res.status(404).json({message: 'Project must have been deleted or never existed!'})
 
     } catch {
         res.status(500).json({error: 'Server issue prevented delete of user'})
